@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Job Board</title>
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f2f5;
+}
+header {
+    background: #007bff;
+    color: #fff;
+    padding: 25px 0;
+    text-align: center;
+}
+header h1 {
+    margin: 0;
+}
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+.search-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.search-bar input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.search-bar button {
+    padding: 12px 20px;
+    border: none;
+    background: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+.search-bar button:hover { background: #0056b3; }
+.job-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+.job-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+.job-logo {
+    height: 100px;
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.job-logo img {
+    max-height: 80%;
+    object-fit: contain;
+}
+.job-content {
+    padding: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.job-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+}
+.job-content p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 0.95em;
+}
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 8px 0;
+}
+.badge {
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #fff;
+}
+.badge.remote { background: #28a745; }
+.badge.fulltime { background: #007bff; }
+.badge.parttime { background: #ff9800; }
+.apply-btn {
+    margin-top: auto;
+    text-align: center;
+}
+.apply-btn a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+.apply-btn a:hover { background: #0056b3; }
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+    gap: 10px;
+}
+.pagination button {
+    padding: 8px 15px;
+    border: 1px solid #007bff;
+    background: #fff;
+    color: #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.pagination button.active {
+    background: #007bff;
+    color: #fff;
+}
+@media(max-width: 600px){
+    .search-bar { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Professional Job Board</h1>
+</header>
+
+<div class="container">
+    <div class="search-bar">
+        <input type="text" id="keyword" placeholder="Search by keyword...">
+        <input type="text" id="location" placeholder="Search by location...">
+        <button onclick="filterJobs()">Search</button>
+    </div>
+
+    <div class="job-grid" id="jobs"></div>
+    <div class="pagination" id="pagination"></div>
+</div>
+
+<script>
+const RSS_FEEDS = [
+    'https://remoteok.io/remote-jobs.rss',
+    'https://weworkremotely.com/categories/remote-programming-jobs.rss'
+];
+
+let allJobs = [];
+let currentPage = 1;
+const jobsPerPage = 12;
+const DEFAULT_LOGO = 'https://via.placeholder.com/150?text=Logo';
+
+async function fetchJobs() {
+    const jobsDiv = document.getElementById('jobs');
+    jobsDiv.innerHTML = '<p>Loading jobs...</p>';
+    allJobs = [];
+
+    for (const feed of RSS_FEEDS) {
+        const RSS_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed)}`;
+        try {
+            const response = await fetch(RSS_URL);
+            const data = await response.json();
+            data.items.forEach(item => {
+                let logo = DEFAULT_LOGO;
+                if(item.enclosure && item.enclosure.link) logo = item.enclosure.link;
+
+                // Determine job type badge (simple keyword matching)
+                let type = 'remote';
+                const desc = item.description.toLowerCase();
+                if(desc.includes('full-time')) type = 'fulltime';
+                else if(desc.includes('part-time')) type = 'parttime';
+
+                allJobs.push({
+                    title: item.title,
+                    link: item.link,
+                    date: new Date(item.pubDate).toLocaleDateString(),
+                    description: item.description.replace(/(<([^>]+)>)/gi, ""),
+                    location: item.categories.join(' ') || 'Remote',
+                    logo: logo,
+                    type: type
+                });
+            });
+        } catch (err) {
+            console.error('Error fetching RSS feed:', feed, err);
+        }
+    }
+    currentPage = 1;
+    displayJobs(allJobs);
+    setupPagination(allJobs.length);
+}
+
+function displayJobs(jobs) {
+    const jobsDiv = document.getElementById('jobs');
+    jobsDiv.innerHTML = '';
+    if(jobs.length === 0) { jobsDiv.innerHTML = '<p>No jobs found.</p>'; return; }
+
+    const start = (currentPage -1) * jobsPerPage;
+    const end = start + jobsPerPage;
+    const paginatedJobs = jobs.slice(start, end);
+
+    paginatedJobs.forEach(job => {
+        const jobEl = document.createElement('div');
+        jobEl.className = 'job-card';
+        jobEl.innerHTML = `
+            <div class="job-logo"><img src="${job.logo}" alt="Logo"></div>
+            <div class="job-content">
+                <h3>${job.title}</h3>
+                <p><strong>Date:</strong> ${job.date} | <strong>Location:</strong> ${job.location}</p>
+                <div class="badges">
+                    <span class="badge ${job.type}">${job.type.replace(/^\w/, c => c.toUpperCase())}</span>
+                </div>
+                <p>${job.description.substring(0,150)}...</p>
+                <div class="apply-btn">
+                    <a href="${job.link}" target="_blank">Apply Now</a>
+                </div>
+            </div>
+        `;
+        jobsDiv.appendChild(jobEl);
+    });
+}
+
+function setupPagination(totalJobs) {
+    const paginationDiv = document.getElementById('pagination');
+    paginationDiv.innerHTML = '';
+    const totalPages = Math.ceil(totalJobs / jobsPerPage);
+    for(let i=1;i<=totalPages;i++){
+        const btn = document.createElement('button');
+        btn.innerText = i;
+        btn.className = (i===currentPage)? 'active':'';
+        btn.onclick = () => { currentPage=i; displayJobs(allJobs); setupPagination(allJobs.length); };
+        paginationDiv.appendChild(btn);
+    }
+}
+
+function filterJobs() {
+    const keyword = document.getElementById('keyword').value.toLowerCase();
+    const location = document.getElementById('location').value.toLowerCase();
+    const filtered = allJobs.filter(job =>
+        (job.title.toLowerCase().includes(keyword) || job.description.toLowerCase().includes(keyword)) &&
+        job.location.toLowerCase().includes(location)
+    );
+    currentPage=1;
+    displayJobs(filtered);
+    setupPagination(filtered.length);
+}
+
+// Auto-refresh
+fetchJobs();
+setInterval(fetchJobs, 30*60*1000);
+</script>
+
+</body>
+</html>
