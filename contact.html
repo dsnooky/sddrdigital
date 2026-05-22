@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | SDDR.digital</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#0f172a;
+    color:white;
+}
+
+/* HEADER */
+header{
+    background:linear-gradient(135deg,#0ea5e9,#2563eb);
+    padding:70px 20px;
+    text-align:center;
+}
+
+header h1{
+    font-size:52px;
+    margin-bottom:10px;
+}
+
+header p{
+    color:#e2e8f0;
+    font-size:18px;
+}
+
+/* CONTACT SECTION */
+.contact-section{
+    padding:70px 8%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.contact-container{
+    width:100%;
+    max-width:1000px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+}
+
+/* CONTACT INFO */
+.contact-info{
+    background:#1e293b;
+    padding:40px;
+    border-radius:25px;
+}
+
+.contact-info h2{
+    color:#38bdf8;
+    margin-bottom:20px;
+    font-size:32px;
+}
+
+.contact-info p{
+    color:#cbd5e1;
+    margin-bottom:25px;
+    line-height:1.7;
+}
+
+.info-box{
+    margin-bottom:20px;
+}
+
+.info-box h3{
+    color:#38bdf8;
+    margin-bottom:5px;
+}
+
+.info-box span{
+    color:#e2e8f0;
+}
+
+/* FORM */
+.contact-form{
+    background:#1e293b;
+    padding:40px;
+    border-radius:25px;
+}
+
+.contact-form h2{
+    color:#38bdf8;
+    margin-bottom:25px;
+    font-size:32px;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#334155;
+    color:white;
+    font-size:15px;
+    outline:none;
+}
+
+textarea{
+    min-height:140px;
+    resize:none;
+}
+
+button{
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#38bdf8;
+    color:#0f172a;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:white;
+    transform:scale(1.02);
+}
+
+/* FOOTER */
+footer{
+    margin-top:40px;
+    background:#020617;
+    text-align:center;
+    padding:25px;
+    color:#94a3b8;
+}
+
+/* MOBILE */
+@media(max-width:850px){
+
+.contact-container{
+    grid-template-columns:1fr;
+}
+
+header h1{
+    font-size:38px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Contact Us</h1>
+    <p>Get in touch with SDDR.digital today</p>
+</header>
+
+<section class="contact-section">
+
+<div class="contact-container">
+
+    <!-- CONTACT INFO -->
+    <div class="contact-info">
+
+        <h2>Let's Talk</h2>
+
+        <p>
+            Need printing services, website creation,
+            graphic design, or online assistance?
+            Send us a message and we'll respond quickly.
+        </p>
+
+        <div class="info-box">
+            <h3>📍 Address</h3>
+            <span>Your Business Address Here</span>
+        </div>
+
+        <div class="info-box">
+            <h3>📞 Phone</h3>
+            <span>+63 912 345 6789</span>
+        </div>
+
+        <div class="info-box">
+            <h3>📧 Email</h3>
+            <span>contact@sddr.digital</span>
+        </div>
+
+        <div class="info-box">
+            <h3>🌐 Facebook</h3>
+            <span>facebook.com/SDDR.digital</span>
+        </div>
+
+    </div>
+
+   
+
+</section>
+
+<footer>
+    © 2026 SDDR.digital • All Rights Reserved
+</footer>
+
+</body>
+</html>
