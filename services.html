@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDDR.digital Services</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#0f172a;
+    color:white;
+}
+
+/* HEADER */
+header{
+    background:linear-gradient(135deg,#0ea5e9,#2563eb);
+    padding:60px 20px;
+    text-align:center;
+}
+
+header h1{
+    font-size:50px;
+    margin-bottom:10px;
+}
+
+header p{
+    font-size:18px;
+    color:#e2e8f0;
+}
+
+/* SERVICES */
+.services{
+    padding:70px 8%;
+}
+
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.service-card{
+    background:#1e293b;
+    border-radius:20px;
+    padding:30px;
+    transition:0.3s;
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+.service-card:hover{
+    transform:translateY(-8px);
+    background:#334155;
+}
+
+.icon{
+    font-size:45px;
+    margin-bottom:20px;
+}
+
+.service-card h2{
+    color:#38bdf8;
+    margin-bottom:15px;
+    font-size:24px;
+}
+
+.service-card p{
+    color:#cbd5e1;
+    line-height:1.7;
+    margin-bottom:20px;
+}
+
+.price{
+    font-size:20px;
+    font-weight:600;
+    color:#22c55e;
+}
+
+button{
+    margin-top:20px;
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:#38bdf8;
+    color:#0f172a;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:white;
+}
+
+/* FOOTER */
+footer{
+    margin-top:60px;
+    background:#020617;
+    text-align:center;
+    padding:25px;
+    color:#94a3b8;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+header h1{
+    font-size:36px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>SDDR.digital Services</h1>
+    <p>Affordable Digital & Printing Solutions</p>
+</header>
+
+<section class="services">
+
+<div class="services-grid">
+
+    <div class="service-card">
+        <div class="icon">🖨️</div>
+        <h2>Printing Services</h2>
+        <p>
+            Black & white printing, colored printing,
+            photocopy, scanning, and document formatting.
+        </p>
+        <div class="price">Starts at ₱5</div>
+        <button>Avail Service</button>
+    </div>
+
+    <div class="service-card">
+        <div class="icon">🎨</div>
+        <h2>Graphic Design</h2>
+        <p>
+            Logo design, tarpaulin layout, invitations,
+            posters, social media pubmats, and branding.
+        </p>
+        <div class="price">Starts at ₱150</div>
+        <button>Avail Service</button>
+    </div>
+
+    <div class="service-card">
+        <div class="icon">💻</div>
+        <h2>Website Creation</h2>
+        <p>
+            Responsive websites for businesses,
+            portfolios, blogs, and online stores.
+        </p>
+        <div class="price">Starts at ₱1,500</div>
+        <button>Avail Service</button>
+    </div>
+
+    <div class="service-card">
+        <div class="icon">📄</div>
+        <h2>Resume & Documents</h2>
+        <p>
+            Resume creation, cover letters,
+            formal letters, and document editing.
+        </p>
+        <div class="price">Starts at ₱50</div>
+        <button>Avail Service</button>
+    </div>
+
+    <div class="service-card">
+        <div class="icon">🆔</div>
+        <h2>ID Picture Services</h2>
+        <p>
+            ID picture editing, white background,
+            enhancement, and rush printing services.
+        </p>
+        <div class="price">Starts at ₱80</div>
+        <button>Avail Service</button>
+    </div>
+
+    <div class="service-card">
+        <div class="icon">🌐</div>
+        <h2>Online Assistance</h2>
+        <p>
+            PSA appointments, online registration,
+            government forms, and application assistance.
+        </p>
+        <div class="price">Starts at ₱100</div>
+        <button>Avail Service</button>
+    </div>
+
+</div>
+
+</section>
+
+<footer>
+    © 2026 SDDR.digital • All Rights Reserved
+</footer>
+
+</body>
+</html>
