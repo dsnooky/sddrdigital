@@ -49,6 +49,7 @@ body{
 .nav-links a{
     text-decoration:none;
     color:white;
+    transition:0.3s;
 }
 
 .nav-links a:hover{
@@ -71,59 +72,60 @@ header p{
     color:#e2e8f0;
 }
 
-/* CONTACT */
+/* CONTACT SECTION */
 .contact{
-    padding:70px 8%;
+    padding:80px 8%;
     display:flex;
     justify-content:center;
+    align-items:center;
 }
 
-.container{
+.contact-box{
     width:100%;
     max-width:700px;
     background:#1e293b;
-    padding:40px;
+    padding:50px;
     border-radius:25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
-.container h2{
-    margin-bottom:25px;
+.contact-box h2{
     color:#38bdf8;
+    font-size:38px;
+    margin-bottom:20px;
 }
 
-form{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
+.contact-box p{
+    color:#cbd5e1;
+    line-height:1.8;
+    margin-bottom:35px;
+    font-size:17px;
 }
 
-input,
-textarea{
-    padding:14px;
-    border:none;
-    border-radius:12px;
-    background:#334155;
+/* FACEBOOK BUTTON */
+.fb-btn{
+    display:inline-block;
+    padding:16px 35px;
+    background:#1877f2;
     color:white;
-    font-size:15px;
-}
-
-textarea{
-    min-height:140px;
-    resize:none;
-}
-
-button{
-    padding:14px;
-    border:none;
-    border-radius:12px;
-    background:#38bdf8;
-    color:#0f172a;
+    text-decoration:none;
+    border-radius:50px;
+    font-size:18px;
     font-weight:600;
-    cursor:pointer;
+    transition:0.3s;
 }
 
-button:hover{
-    background:white;
+.fb-btn:hover{
+    transform:scale(1.05);
+    background:#3b82f6;
+}
+
+/* INFO */
+.info{
+    margin-top:40px;
+    color:#e2e8f0;
+    line-height:2;
 }
 
 /* FOOTER */
@@ -147,10 +149,19 @@ header h1{
     font-size:38px;
 }
 
+.contact-box{
+    padding:35px 25px;
+}
+
+.contact-box h2{
+    font-size:30px;
+}
+
 }
 
 </style>
 </head>
+
 <body>
 
 <!-- NAVBAR -->
@@ -166,35 +177,43 @@ header h1{
 
 </nav>
 
+<!-- HEADER -->
 <header>
     <h1>Contact Us</h1>
-    <p>Send us a message today</p>
+    <p>Reach us directly through Facebook</p>
 </header>
 
+<!-- CONTACT SECTION -->
 <section class="contact">
 
-<div class="container">
+    <div class="contact-box">
 
-    <h2>Get in Touch</h2>
+        <h2>Let's Connect</h2>
 
-    <form>
+        <p>
+            Need printing services, graphic design,
+            website creation, or online assistance?
+            Message SDDR.digital directly on Facebook.
+        </p>
 
-        <input type="text" placeholder="Your Name" required>
+        <!-- FACEBOOK BUTTON -->
+        <a href="https://facebook.com/"
+           target="_blank"
+           class="fb-btn">
+           📘 Message on Facebook
+        </a>
 
-        <input type="email" placeholder="Your Email" required>
+        <div class="info">
+            <p>📍 Your Business Address</p>
+            <p>📞 +63 912 345 6789</p>
+            <p>📧 contact@sddr.digital</p>
+        </div>
 
-        <input type="text" placeholder="Subject">
-
-        <textarea placeholder="Write your message here..." required></textarea>
-
-        <button type="submit">Send Message</button>
-
-    </form>
-
-</div>
+    </div>
 
 </section>
 
+<!-- FOOTER -->
 <footer>
     © 2026 SDDR.digital • All Rights Reserved
 </footer>
