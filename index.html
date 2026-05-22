@@ -1,220 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ultimate Virtual Jobs Board</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SDDR.digital</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-:root {
-    --bg-light:#f0f2f5;
-    --bg-dark:#121212;
-    --card-light:#fff;
-    --card-dark:#1e1e1e;
-    --text-light:#000;
-    --text-dark:#fff;
-    --primary:#007bff;
-    --green:#28a745;
-    --orange:#ff9800;
-    --red:#ff4757;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin:0; padding:0; background:var(--bg-light); color:var(--text-light);
-    transition:background 0.3s, color 0.3s;
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#0f172a;
+    color:white;
 }
-body.dark-mode { background:var(--bg-dark); color:var(--text-dark);}
-header { background:var(--primary); color:#fff; text-align:center; padding:25px 0; position:relative;}
-header h1 { margin:0; }
-.toggle-btn { position:absolute; top:20px; right:20px; padding:10px 15px; cursor:pointer; border:none; border-radius:5px; background:#fff; color:var(--primary); font-weight:bold; transition:0.3s; }
-.toggle-btn:hover { background:#e0e0e0;}
-.live-update { position:absolute; top:70px; left:50%; transform:translateX(-50%); background:var(--green); color:#fff; padding:8px 15px; border-radius:5px; font-weight:bold; opacity:0; pointer-events:none; transition:opacity 0.5s;}
-.container { max-width:1200px; margin:20px auto; padding:0 20px; }
-.tabs { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:15px; }
-.tab { padding:10px 20px; border-radius:5px; cursor:pointer; background:#e0e0e0; font-weight:bold; transition:0.3s; position:relative;}
-.tab.active { background:var(--primary); color:#fff; }
-.tab .count { background:#fff; color:var(--primary); border-radius:50%; padding:2px 8px; font-size:0.8em; font-weight:bold; margin-left:5px; transition:0.3s; }
-body.dark-mode .tab .count { background:#333; color:#fff;}
-.search-bar { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px; }
-.search-bar input { flex:1; padding:12px; border-radius:5px; border:1px solid #ccc; }
-.search-bar button { padding:12px 20px; border:none; background:var(--primary); color:#fff; border-radius:5px; cursor:pointer; font-weight:bold; transition:0.3s; }
-.search-bar button:hover { background:#0056b3;}
-.job-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
-.job-card { background:var(--card-light); border-radius:10px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.1); display:flex; flex-direction:column; transition:transform 0.3s, box-shadow 0.3s, border 0.3s; border:3px solid transparent;}
-body.dark-mode .job-card { background:var(--card-dark);}
-.job-card.new-today { border-color:var(--red); animation:pulse 1.2s infinite alternate;}
-@keyframes pulse {0%{border-color:#ff6b81;}100%{border-color:var(--red);}}
-.job-card:hover { transform:translateY(-5px); box-shadow:0 6px 15px rgba(0,0,0,0.15);}
-.job-logo { height:100px; background:#f4f4f4; display:flex; align-items:center; justify-content:center; overflow:hidden; transition:background 0.3s;}
-body.dark-mode .job-logo { background:#2c2c2c; }
-.job-logo img { max-height:80%; object-fit:contain; transition: transform 0.3s; }
-.job-card:hover .job-logo img { transform:scale(1.1); }
-.job-content { padding:15px; flex:1; display:flex; flex-direction:column; }
-.job-content h3 { margin:0 0 10px 0; font-size:1.1em; }
-.job-content p { margin:5px 0; color:#555; font-size:0.95em; }
-body.dark-mode .job-content p { color:#ccc;}
-.badges { display:flex; flex-wrap:wrap; gap:5px; margin:8px 0; }
-.badge { padding:4px 8px; border-radius:5px; font-size:0.8em; font-weight:bold; color:#fff; transition:0.3s, transform 0.3s; }
-.badge.remote { background:var(--green); }
-.badge.fulltime { background:var(--primary); }
-.badge.parttime { background:var(--orange); }
-.badge.new { background:var(--red); animation:badge-glow 1.2s infinite alternate; }
-@keyframes badge-glow { 0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);} }
-.apply-btn { margin-top:auto; text-align:center; }
-.apply-btn a { display:inline-block; padding:10px 20px; background:var(--primary); color:#fff; border-radius:5px; font-weight:bold; text-decoration:none; transition:background 0.3s; }
-.apply-btn a:hover { background:#0056b3; }
-@media(max-width:600px){ .search-bar{flex-direction:column;} .tabs{justify-content:center;} .tab .count{display:none;} }
+
+/* NAVBAR */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:rgba(0,0,0,0.2);
+    backdrop-filter:blur(10px);
+    position:sticky;
+    top:0;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    color:#38bdf8;
+}
+
+nav ul{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#38bdf8;
+}
+
+/* HERO */
+.hero{
+    min-height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px;
+    background:
+    linear-gradient(rgba(15,23,42,0.8),rgba(15,23,42,0.8)),
+    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop') center/cover;
+}
+
+.hero-content h1{
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+.hero-content h1 span{
+    color:#38bdf8;
+}
+
+.hero-content p{
+    max-width:700px;
+    margin:auto;
+    color:#cbd5e1;
+    font-size:18px;
+    line-height:1.7;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:14px 35px;
+    background:#38bdf8;
+    color:#0f172a;
+    text-decoration:none;
+    border-radius:50px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+    background:white;
+}
+
+/* SERVICES */
+.services{
+    padding:80px 8%;
+    text-align:center;
+}
+
+.services h2{
+    font-size:40px;
+    margin-bottom:50px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#1e293b;
+    padding:30px;
+    border-radius:20px;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    background:#334155;
+}
+
+.card h3{
+    margin-bottom:15px;
+    color:#38bdf8;
+}
+
+/* FOOTER */
+footer{
+    background:#020617;
+    text-align:center;
+    padding:25px;
+    color:#94a3b8;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+.hero-content h1{
+    font-size:42px;
+}
+
+nav{
+    flex-direction:column;
+    gap:15px;
+}
+
+}
 </style>
 </head>
+
 <body>
 
-<header>
-<h1>Ultimate Virtual Jobs Board</h1>
-<button class="toggle-btn" onclick="toggleDarkMode()">Dark Mode</button>
-<div class="live-update" id="liveUpdate">0 new jobs loaded!</div>
-</header>
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">SDDR.digital</div>
 
-<div class="container">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
 
-<div class="tabs">
-    <div class="tab active" data-type="virtual assistant">Virtual Assistant <span class="count">0</span></div>
-    <div class="tab" data-type="social media manager">Social Media Manager <span class="count">0</span></div>
-    <div class="tab" data-type="lead generation">Lead Generation <span class="count">0</span></div>
-    <div class="tab" data-type="graphic designer">Graphic Designer <span class="count">0</span></div>
-</div>
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to <span>SDDR.digital</span></h1>
 
-<div class="search-bar">
-<input type="text" id="keyword" placeholder="Search by keyword...">
-<input type="text" id="location" placeholder="Search by location...">
-<button onclick="filterJobs()">Search</button>
-</div>
+        <p>
+            Modern digital solutions for printing, design, online services,
+            branding, and creative content. Build your online presence with
+            a stylish and professional website.
+        </p>
 
-<div class="job-grid" id="jobs"></div>
-</div>
+        <a href="#" class="btn">Get Started</a>
+    </div>
+</section>
 
-<script>
-const RSS_FEEDS = [
-    'https://remoteok.io/remote-jobs.rss',
-    'https://weworkremotely.com/categories/remote-programming-jobs.rss'
-];
-const JOB_KEYWORDS = ['virtual assistant','social media manager','lead generation','graphic designer'];
-let allJobs=[], displayedJobs=[], currentTab='virtual assistant', jobsPerLoad=12;
-let DEFAULT_LOGO='https://via.placeholder.com/150?text=Logo';
+<!-- SERVICES -->
+<section class="services">
 
-const jobsGrid = document.getElementById('jobs');
-const tabs = document.querySelectorAll('.tab');
-const liveUpdate = document.getElementById('liveUpdate');
+    <h2>Our Services</h2>
 
-function isToday(dateStr){ const jobDate=new Date(dateStr); const today=new Date(); return jobDate.toDateString()===today.toDateString(); }
+    <div class="cards">
 
-async function fetchJobs(){
-    const prevCount = allJobs.length;
-    const prevLinks = allJobs.map(j=>j.link);
-    allJobs=[];
-    for(const feed of RSS_FEEDS){
-        const RSS_URL=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed)}`;
-        try{
-            const res=await fetch(RSS_URL);
-            const data=await res.json();
-            data.items.forEach(item=>{
-                let titleLower=item.title.toLowerCase();
-                let descLower=item.description.toLowerCase();
-                JOB_KEYWORDS.forEach(keyword=>{
-                    if(titleLower.includes(keyword) || descLower.includes(keyword)){
-                        let logo=DEFAULT_LOGO;
-                        if(item.enclosure && item.enclosure.link) logo=item.enclosure.link;
-                        let type='remote';
-                        if(descLower.includes('full-time')) type='fulltime';
-                        else if(descLower.includes('part-time')) type='parttime';
-                        allJobs.push({
-                            title:item.title,
-                            link:item.link,
-                            date:new Date(item.pubDate),
-                            description:item.description.replace(/(<([^>]+)>)/gi,""),
-                            location:item.categories.join(' ')||'Remote',
-                            logo:logo,
-                            jobType:keyword,
-                            type:type,
-                            newToday:isToday(item.pubDate)
-                        });
-                    }
-                });
-            });
-        }catch(err){ console.error('RSS fetch error',feed,err);}
-    }
-    updateCounts();
-    // Determine number of new jobs
-    const newJobs = allJobs.filter(j=>!prevLinks.includes(j.link));
-    if(newJobs.length>0) showLiveUpdate(newJobs.length);
-    displayedJobs=[];
-    jobsGrid.innerHTML='';
-    renderJobs();
-}
+        <div class="card">
+            <h3>Printing Services</h3>
+            <p>
+                Documents, tarpaulin, invitations, IDs,
+                photo printing, and more.
+            </p>
+        </div>
 
-// Show live update with exact number
-function showLiveUpdate(count){
-    liveUpdate.innerText = `${count} new job${count>1?'s':''} loaded!`;
-    liveUpdate.style.opacity='1';
-    setTimeout(()=>{ liveUpdate.style.opacity='0'; },2500);
-}
+        <div class="card">
+            <h3>Graphic Design</h3>
+            <p>
+                Logos, posters, social media pubmats,
+                and creative branding materials.
+            </p>
+        </div>
 
-// Update live counts
-function updateCounts(){ tabs.forEach(tab=>{ const type=tab.dataset.type; const count=allJobs.filter(job=>job.jobType===type).length; tab.querySelector('.count').innerText=count; }); }
+        <div class="card">
+            <h3>Web Development</h3>
+            <p>
+                Responsive and modern websites
+                for businesses and personal brands.
+            </p>
+        </div>
 
-function renderJobs(){
-    const filtered = allJobs.filter(job=>job.jobType===currentTab);
-    const start=displayedJobs.length;
-    const end=Math.min(start+jobsPerLoad,filtered.length);
-    const jobsToRender=filtered.slice(start,end);
-    jobsToRender.forEach(job=>{
-        const card=document.createElement('div'); card.className='job-card'; if(job.newToday) card.classList.add('new-today');
-        card.innerHTML=`
-            <div class="job-logo"><img src="${job.logo}" alt="Logo"></div>
-            <div class="job-content">
-                <h3>${job.title}</h3>
-                <p><strong>Date:</strong> ${job.date.toLocaleDateString()} | <strong>Location:</strong> ${job.location}</p>
-                <div class="badges">
-                    <span class="badge ${job.type}">${job.type.replace(/^\w/,c=>c.toUpperCase())}</span>
-                    ${job.newToday?'<span class="badge new">New Today</span>':''}
-                </div>
-                <p>${job.description.substring(0,150)}...</p>
-                <div class="apply-btn"><a href="${job.link}" target="_blank">Apply Now</a></div>
-            </div>`;
-        jobsGrid.appendChild(card); displayedJobs.push(job);
-    });
-}
+    </div>
 
-window.addEventListener('scroll', ()=>{ if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 100){ renderJobs(); }});
+</section>
 
-tabs.forEach(tab=>{ tab.addEventListener('click',()=>{ tabs.forEach(t=>t.classList.remove('active')); tab.classList.add('active'); currentTab=tab.dataset.type; displayedJobs=[]; jobsGrid.innerHTML=''; renderJobs(); }); });
-
-function filterJobs(){
-    const keyword = document.getElementById('keyword').value.toLowerCase();
-    const location = document.getElementById('location').value.toLowerCase();
-    displayedJobs=[]; jobsGrid.innerHTML='';
-    const filtered = allJobs.filter(job=>job.jobType===currentTab)
-        .filter(job=>(job.title.toLowerCase().includes(keyword)||job.description.toLowerCase().includes(keyword))&&job.location.toLowerCase().includes(location));
-    filtered.forEach(job=>{
-        const card=document.createElement('div'); card.className='job-card'; if(job.newToday) card.classList.add('new-today');
-        card.innerHTML=`
-            <div class="job-logo"><img src="${job.logo}" alt="Logo"></div>
-            <div class="job-content">
-                <h3>${job.title}</h3>
-                <p><strong>Date:</strong> ${job.date.toLocaleDateString()} | <strong>Location:</strong> ${job.location}</p>
-                <div class="badges">
-                    <span class="badge ${job.type}">${job.type.replace(/^\w/,c=>c.toUpperCase())}</span>
-                    ${job.newToday?'<span class="badge new">New Today</span>':''}
-                </div>
-                <p>${job.description.substring(0,150)}...</p>
-                <div class="apply-btn"><a href="${job.link}" target="_blank">Apply Now</a></div>
-            </div>`; jobsGrid.appendChild(card); displayedJobs.push(job);
-    });
-}
-
-function toggleDarkMode(){ document.body.classList.toggle('dark-mode'); }
-
-fetchJobs();
-setInterval(fetchJobs,30*60*1000);
-</script>
+<!-- FOOTER -->
+<footer>
+    © 2026 SDDR.digital • All Rights Reserved
+</footer>
 
 </body>
 </html>
